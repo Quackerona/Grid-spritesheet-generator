@@ -10,7 +10,7 @@ max_w = 0
 max_h = 0
 images = []
 for f in PATH.glob("*.png"):
-    image = Image.open(f)
+    image = Image.open(f).convert("RGBA")
     if max_w < image.width:
         max_w = image.width
     if max_h < image.height:
@@ -30,4 +30,5 @@ for x_i in range(0, STEP_X):
             int((y_i * max_h + (y_i + 1) * max_h - img.height) / 2)
         ), mask=img)
         images.pop()
+
 sprite_sheet.save(SAVE_PATH)
